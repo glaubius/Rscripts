@@ -6,12 +6,12 @@
 plotData <- data.frame("test"=character(), "meanRain"=numeric(), "sdRain"=numeric(), "n"=integer(), stringsAsFactors=FALSE)
 
 ## read in rainfall data from all simulations in test
-rain_files <- list.files(path = "./Test2", pattern = "Rainfall-*")
+rain_files <- list.files(path = "./yes-at", pattern = "Rainfall-*")
 num_files <- length(rain_files)
 rainData <- list()
 
 for(i in 1:num_files) {
-  read_file <- paste0("./Test2/", rain_files[i])
+  read_file <- paste0("./yes-at/", rain_files[i])
   rain <- read.table(read_file, header=FALSE)
   rainData <- rbind(rainData, rain)
 }
@@ -21,7 +21,7 @@ meanRain <- mean(rainData[[1]])
 sdRain <- sd(rainData[[1]])
 num_obs <- dim(rainData)
 
-plotData <- rbind(plotData, data.frame("test"="test2", "meanRain"=meanRain, "sdRain"=sdRain, "n"=num_obs[1]))
+plotData <- rbind(plotData, data.frame("test"="yes-at", "meanRain"=meanRain, "sdRain"=sdRain, "n"=num_obs[1]))
 
 ## Calculate standard error (se) once all tests are in plotData
 plotData$seRain <- plotData$sdRain / sqrt(plotData$n)
